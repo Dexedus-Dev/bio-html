@@ -1,0 +1,378 @@
+/* Reset and base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+body, html {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #0f2027;
+    color: #fff;
+}
+
+/* พื้นหลังสีเข้มครอบจอ */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* หรือสีอื่นก็ได้ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease;
+}
+
+/* วงกลมหมุน */
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    border-top: 8px solid #9370DB; /* สีหลัก */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ส่วนหลักของเว็บ ปิดไว้ก่อน */
+#main-content, #particles-js {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+
+/* Particles background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://i.postimg.cc/N0bNbtmB/APO.gif') center center fixed; /* Your background GIF */
+    background-size: cover;
+    z-index: 0;
+}
+
+/* Bio Card Styling */
+.bio-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* กลางแนวตั้ง */
+    flex-direction: column;
+    align-items: center; /* กลางแนวนอน */
+    min-height: 100vh;  /* ใช้ viewport height เต็มจอ */
+    padding: 20px;
+}
+
+.bio-card, .social-links {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid rgba(147, 112, 219, 0.7);
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.7);
+    max-width: 500px;
+    width: 90%;
+    box-sizing: border-box;
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transition: opacity 1.5s ease, backdrop-filter 1.5s ease, -webkit-backdrop-filter 1.5s ease;
+}
+
+.bio-card.aos-animate, .social-links.aos-animate {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+.profile-img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-img:hover
+{
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 0 25px rgba(147, 112, 219, 1);
+}
+
+.bio-card h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(147, 112, 219, 1);
+}
+
+.tagline {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.bio {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #eee;
+    margin-bottom: 25px;
+}
+
+.discord-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(147, 112, 219, 0.7);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.discord-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 12px rgba(147, 112, 219, 0.8);
+}
+
+.discord-tag i {
+    transition: color 0.3s;
+}
+
+.discord-tag i.fa-copy:hover {
+    color: #9370DB;
+}
+
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 16px;
+    padding: 1rem;
+    animation-delay: 0.5s;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(147, 112, 219, 0.3);
+    border: 1px solid rgba(147, 112, 219, 0.7);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.4);
+}
+
+/* ✅ เมื่อเอาเมาส์ชี้ */
+.social-links a:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(147, 112, 219, 0.8);
+}
+
+/* ✅ เมื่อกดคลิกค้างไว้ */
+.social-links a:active {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(147, 112, 219, 1);
+}
+
+.copy-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(147, 112, 219, 0.85);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.8);
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(-120%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+/* เมื่อ popup แสดง */
+.copy-popup.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* เมื่อ popup ซ่อนด้วย slide ออกไปทางซ้าย */
+.copy-popup.hide {
+    opacity: 0;
+    transform: translateX(-120%);
+}
+
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    background: rgba(147, 112, 219, 0.5);
+    border: 1px solid rgba(147, 112, 219, 0.7);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.3s;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.music-control:hover {
+    background: rgba(147, 112, 219, 0.7);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.music-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(147, 112, 219, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    flex-direction: column;
+    gap: 10px;
+    width: 220px;
+    z-index: 99;
+    color: white;
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.5);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+.music-panel.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.song-info {
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.volume-control {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.volume-slider {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Chrome, Edge, Safari */
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #9370db;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.6);
+    border: none;
+    margin-top: -5px; /* Align center on track */
+}
+
+/* Firefox */
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #9370db;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.6);
+    border: none;
+}
+
+/* Chrome & Safari Track */
+.volume-slider::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+.music-controls-buttons i:hover {
+    color: #9370db;
+}
+
+.volume-control i {
+    color: white;
+    font-size: 14px;
+}
+
+.music-controls-buttons i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.music-controls-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

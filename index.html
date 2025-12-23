@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dexedus is Homeless</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://play.katxd.xyz">
+    <link rel="stylesheet" href="plugins/aos-master/dist/aos.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <div id="particles-js"></div>
+    <div class="bio-container" id="main-content">
+        <div class="bio-card" data-aos="fade-up" data-aos-delay="10" data-aos-duration="1500">
+            <img src="./assets/p.jpg" alt="KaneXD Profile" class="profile-img">
+            <h1>Dexedus</h1>
+            <span class="discord-tag" id="discordTag">
+                <i class="fab fa-discord"></i> eqtp_ <i class="fas fa-copy" id="copyIcon"></i>
+            </span>
+            <p class="tagline typing-animation">A Passionate Developer & Designer</p>
+            <p class="bio" id="typingText">
+                Hello i'm KaneXD a chill developer that like new creation and anime my favorite game is minecraft, rov
+            </p>
+        </div>
+        <div class="social-links" data-aos="fade-up" data-aos-delay="10" data-aos-duration="2000">
+            <a href="https://youtube.com/@NSTIOM" title="YouTube" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://discord.gg/XMFtu6QKxd" title="Discord" target="_blank">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.facebook.com/zane.Xz1" title="Facebook" target="_blank">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://Github.com/Dexedus-Dev" title="GitHub" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <div id="copyPopup" class="copy-popup"></div>
+    </div>
+    <audio id="bgMusic" loop="" preload="metadata">
+        <source src="./assets/สาวสวนแตง x Where Is The Love  (Kz-mix).mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-music"></i>
+    </div>
+    <div class="music-panel hide" id="musicPanel">
+        <div class="song-info" id="songInfo">สาวสวนแตง x Where Is The Love  (Kz-mix)</div> <!-- Initial text -->
+        <div class="music-controls-buttons">
+            <i class="fas fa-play" id="playPauseBtn"></i> <!-- Play/Pause button inside panel -->
+            <i class="fas fa-volume-up" id="muteBtn"></i> <!-- Mute button -->
+        </div>
+        <div class="volume-control">
+            <i class="fas fa-volume-down"></i>
+            <input type="range" min="0" max="1" step="0.01" value="0.3" class="volume-slider" id="volumeSlider">
+            <i class="fas fa-volume-up"></i>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            const content = document.getElementById("main-content");
+            const particles = document.getElementById("particles-js");
+
+            const bg = new Image();
+            bg.src = "https://i.postimg.cc/N0bNbtmB/APO.gif";
+            bg.onload = () => {
+                preloader.style.opacity = "0";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                    if (content) content.style.opacity = "1";
+                    if (particles) particles.style.opacity = "1";
+                    AOS.init({
+                        easing: 'ease-in-out-sine',
+                        once: true,
+                        duration: 1500
+                    });
+                    document.querySelectorAll('[data-aos]').forEach(el => {
+                        el.classList.add('aos-animate');
+                    });
+                }, 1000);
+            };
+        });
+
+    </script>
+
+    <!-- scripts -->
+    <script src="plugins/particles.js-master/particles.js"></script>
+    <script src="js/app.js"></script>
+    <script src="plugins/aos-master/dist/aos.js"></script>
+    <script>
+        document.getElementById("discordTag").addEventListener("click", function () {
+            const tag = "eqtp_";
+            navigator.clipboard.writeText(tag).then(() => {
+                // แสดงข้อความ popup
+                const popup = document.getElementById("copyPopup");
+                popup.textContent = "คัดลอก Discord Tag แล้ว: " + tag;
+                popup.classList.add("show");
+                popup.classList.remove("hide");
+
+                // เปลี่ยน icon เป็น fa-check
+                const icon = document.getElementById("copyIcon");
+                icon.classList.remove("fa-copy");
+                icon.classList.add("fa-check");
+
+                // เปลี่ยนกลับเป็น fa-copy หลัง 2.5 วินาที
+                setTimeout(() => {
+                    icon.classList.remove("fa-check");
+                    icon.classList.add("fa-copy");
+                }, 2500);
+
+                // ซ่อน popup หลัง 5 วินาที
+                setTimeout(() => {
+                    popup.classList.add("hide");
+                    popup.classList.remove("show");
+                }, 5000);
+            }).catch(err => {
+                console.error("ไม่สามารถคัดลอกได้", err);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("bgMusic");
+            const musicControl = document.getElementById("musicControl");
+            const musicPanel = document.getElementById("musicPanel");
+            const playPauseBtn = document.getElementById("playPauseBtn");
+            const muteBtn = document.getElementById("muteBtn");
+            const volumeSlider = document.getElementById("volumeSlider");
+            const fullText = "Hello i'm KaneXD a chill developer that like new creation and anime my favorite game is minecraft, rov";
+            const bioCard = document.querySelector('.bio-card');
+            const socialLinks = document.querySelector('.social-links');
+            const typingText = document.getElementById('typingText');
+            let index = 0;
+            if (bioCard && socialLinks) {
+                // ดึงความกว้างของ social-links (รวม padding และ border ถ้า box-sizing = border-box)
+                const socialWidth = socialLinks.getBoundingClientRect().width;
+                document.body.style.zoom = "0.8";
+                bioCard.style.width = socialWidth + "px";
+                socialLinks.style.width = socialWidth + "px";
+            }
+            typingText.textContent = '';
+
+            function type() {
+                if (index < fullText.length) {
+                    typingText.textContent += fullText.charAt(index);
+                    index++;
+                    setTimeout(type, 50);
+                }
+            }
+
+            setTimeout(type, 100);
+            // ปุ่มเปิด/ปิด panel
+            musicControl.addEventListener("click", () => {
+                musicPanel.classList.toggle("show");
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.classList.remove("fa-play");
+                    playPauseBtn.classList.add("fa-pause");
+                }
+            });
+
+            // ปุ่มเล่น/หยุดเพลง
+            playPauseBtn.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.classList.remove("fa-play");
+                    playPauseBtn.classList.add("fa-pause");
+                } else {
+                    audio.pause();
+                    playPauseBtn.classList.remove("fa-pause");
+                    playPauseBtn.classList.add("fa-play");
+                }
+            });
+
+            // ปุ่ม mute/unmute
+            muteBtn.addEventListener("click", () => {
+                audio.muted = !audio.muted;
+                if (audio.muted) {
+                    muteBtn.classList.remove("fa-volume-up");
+                    muteBtn.classList.add("fa-volume-mute");
+                } else {
+                    muteBtn.classList.remove("fa-volume-mute");
+                    muteBtn.classList.add("fa-volume-up");
+                }
+            });
+
+            // ปรับระดับเสียง
+            volumeSlider.addEventListener("input", () => {
+                audio.volume = volumeSlider.value;
+            });
+
+            // เริ่มด้วยเสียง 0.3
+            audio.volume = 0.3;
+        });
+    </script>
+</body>
+</html>
